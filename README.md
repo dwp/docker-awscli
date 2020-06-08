@@ -22,7 +22,8 @@ For example, to use this in a Concourse pipeline:
         image_resource:
           type: docker-image
           source:
-            repository: dwpdigital/awscli
+            repository: ((dataworks.docker_awscli_repository))
+            tag: ((dataworks.docker_awscli_version))
         params:
           AWS_ROLE_ARN: arn:aws:iam::((dataworks.aws_management_acc)):role/ci
         run:
