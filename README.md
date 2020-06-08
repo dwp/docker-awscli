@@ -1,4 +1,4 @@
-# dataworks-repo-template
+# docker-awscli
 Template repository for DataWorks GitHub
 
 This repo contains the Makefile to fit the standard pattern.
