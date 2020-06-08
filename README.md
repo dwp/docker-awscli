@@ -1,14 +1,38 @@
 # docker-awscli
-Template repository for DataWorks GitHub
+Repository for `docker-awscli`
 
-This repo contains the Makefile to fit the standard pattern.
-This repo will be used as a base to create new non-Terraform repos, upon which the user runs make initial-commit, adding the githooks submodule, making the repo ready for use.
+https://hub.docker.com/repository/docker/dwpdigital/awscli
 
-### Initialisation steps
-Welcome to your new DataWorks GitHub repository.
+# Usage & Examples
 
-Please run:  
-`make initial-commit`
-to begin using your repository.  
+This container can be used with no arguments or environment variables, and will 
+provide a container which is based off of the `govermentpaas/awscli` container.
 
-The `initial-commit` will create a PR adding the `dataworks-githooks` submodule to the `.githooks` folder.  For more info see: [dataworks-githooks](https://github.com/dwp/dataworks-githooks)
+It also provides a file at `/assumerole`, the use of which is optional. If used,
+it expects to be provided an `AWS_ROLE_ARN` environment variable and will export 
+`AWS_SECRET_ACCESS_KEY`, `AWS_ACCESS_KEY_ID` and `AWS_SESSION_TOKEN` environmental 
+variables for use in-session.
+
+For example, to use this in a Concourse pipeline:
+
+    my-interesting-task-name:
+      task: my-interesting-task-name
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source:
+            repository: dwpdigital/awscli
+        params:
+          AWS_ROLE_ARN: arn:aws:iam::((dataworks.aws_management_acc)):role/ci
+        run:
+          path: sh
+          args:
+            - -exc
+            - |
+              source /assume-role
+              aws lambda invoke --function-name ami_builder --invocation-type RequestResponse --payload file://manifest/manifest.json --cli-connect-timeout 900 --cli-read-timeout 900 output.json
+
+No further configuration is required once the `source /assume-role` has been parsed 
+as the values obtained from STS are exported as environmental variables and can 
+therefore be used by AWS CLI calls.
