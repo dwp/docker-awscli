@@ -25,7 +25,6 @@ For example, to use this in a Concourse pipeline:
             repository: dwpdigital/awscli
         params:
           AWS_ROLE_ARN: arn:aws:iam::((dataworks.aws_management_acc)):role/ci
-          AWS_REGION: ((dataworks.aws_region))
         run:
           path: sh
           args:
