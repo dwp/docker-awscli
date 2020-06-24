@@ -6,3 +6,4 @@ ignore:
     - '*':
         reason: False positive, due to Snyk misunderstanding version numbers.
         expires: 2030-06-24T00:00:00.000Z
+patch: {}

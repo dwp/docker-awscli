@@ -17,6 +17,8 @@ No further configuration is required once the `source /assume-role` has been par
 as the values obtained from STS are exported as environmental variables and can 
 therefore be used by AWS CLI calls.
 
+Lastly this image now contains `jq`, `jinja2` and `YAML` so it can replace a multitude of other images with this one image.
+
 
 # Examples
 This example is quite generic. To use this in a Concourse pipeline:
