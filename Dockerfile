@@ -1,6 +1,6 @@
-FROM governmentpaas/awscli:848d890e2aa7ffb049801c23dc85f981b49e491a
+FROM python:3.8.3-alpine3.12
 
-RUN apk add --no-cache jq py-pip
+RUN apk add --no-cache jq
 
 COPY assume-role /
 COPY requirements.txt /tmp
