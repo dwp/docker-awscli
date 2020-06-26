@@ -3,3 +3,5 @@ botocore >= 1.17.9,<1.18.0
 boto3 >= 1.9.160,<2.0.0
 jinja2 >= 2.10
 pyyaml >= 3.13
+
+rsa>=4.1 # not directly required, pinned by Snyk to avoid a vulnerability
