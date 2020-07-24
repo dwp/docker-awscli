@@ -6,7 +6,7 @@ https://hub.docker.com/repository/docker/dwpdigital/awscli
 # Usage
 
 This container can be used with no arguments or environment variables, and will 
-provide a container which is based off of the `govermentpaas/awscli` container.
+provide a container which is based off of the `python:3.8.3-alpine3.12` image.
 
 It also provides a file at `/assumerole`, the use of which is optional. If used,
 it expects to be provided an `AWS_ROLE_ARN` environment variable and will export 
@@ -17,7 +17,7 @@ No further configuration is required once the `source /assume-role` has been par
 as the values obtained from STS are exported as environmental variables and can 
 therefore be used by AWS CLI calls.
 
-Lastly this image now contains `jq`, `jinja2` and `YAML` so it can replace a multitude of other images with this one image.
+Lastly this image now contains `jq`, `jinja2`, `git` and `YAML` so it can replace a multitude of other images with this one image.
 
 
 # Examples
