@@ -2,7 +2,7 @@
 version: v1.13.5
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  SNYK-ALPINE39-JQ-338867:
+  SNYK-ALPINE312-JQ-588886:
     - '*':
         reason: False positive, due to Snyk misunderstanding version numbers.
         expires: 2030-06-24T00:00:00.000Z
