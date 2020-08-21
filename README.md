@@ -17,6 +17,8 @@ No further configuration is required once the `source /assume-role` has been par
 as the values obtained from STS are exported as environmental variables and can 
 therefore be used by AWS CLI calls.
 
+The default time for the role assumption to last is five minutes (900s).  You can maniplulate this in your pipelines to extend to the currently allowed maximum of four hours (14400s).  This is done by passing `ASSUME_ROLE:` parameter to the job at run time, with a value in seconds within a range of 900-14400.
+
 Lastly this image now contains `jq`, `jinja2` and `YAML` so it can replace a multitude of other images with this one image.
 
 
@@ -38,6 +40,7 @@ This example is quite generic. To use this in a Concourse pipeline:
           - -exc
           - |
             source /assume-role
+            set +x
             aws --version
             
 Of course in place of `aws --version` you can have any AWS CLI command that is privileged 
@@ -58,11 +61,12 @@ Concourse pipeline that has been configured to use [`dataworks-secrets`](https:/
             tag: ((dataworks.docker_awscli_version))
         params:
           AWS_ROLE_ARN: arn:aws:iam::((dataworks.aws_management_acc)):role/ci
+          ASSUME_DURATION: 3600
         run:
           path: sh
           args:
             - -exc
             - |
               source /assume-role
+              set +x
               aws lambda invoke --function-name ami_builder --invocation-type RequestResponse --payload file://manifest/manifest.json --cli-connect-timeout 900 --cli-read-timeout 900 output.json
-
