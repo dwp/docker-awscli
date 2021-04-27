@@ -1,6 +1,6 @@
 FROM python:3.8.3-alpine3.12
 
-RUN apk add --no-cache jq curl
+RUN apk add --no-cache jq curl gnumeric ttf-ubuntu-font-family
 
 COPY assume-role /
 COPY requirements.txt /tmp
