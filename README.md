@@ -60,7 +60,7 @@ Concourse pipeline that has been configured to use [`dataworks-secrets`](https:/
             repository: ((dataworks.docker_awscli_repository))
             tag: ((dataworks.docker_awscli_version))
         params:
-          AWS_ROLE_ARN: arn:aws:iam::((dataworks.aws_management_acc)):role/ci
+          AWS_ROLE_ARN: arn:aws:iam::((aws_account.management)):role/ci
           ASSUME_DURATION: 3600
         run:
           path: sh
