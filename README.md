@@ -1,3 +1,5 @@
+# DO NOT USE THIS REPO - MIGRATED TO GITLAB
+
 # docker-awscli
 Repository for `docker-awscli`
 
